@@ -1,3 +1,9 @@
+/*******************************************************************************
+* RoboCore - ESP8266 Primeiros Passos com Arduino
+* Codigo utilizado para enviar comandos AT atraves do monitor serial da Arduino
+* IDE.
+*******************************************************************************/  
+
 #include "SoftwareSerial.h"
 
 SoftwareSerial ESP_Serial(10, 11); // RX, TX
