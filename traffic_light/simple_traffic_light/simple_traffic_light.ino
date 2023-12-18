@@ -1,8 +1,8 @@
 // nomeando as portas
 
-int red = 10;
-int yellow = 9;
-int green = 8;
+int red = 12;
+int yellow = 3;
+int green = 2;
 
 void setup() {
     // indicando as portas que serão usadas
