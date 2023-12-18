@@ -7,199 +7,137 @@ int f=8;
 int g=9;
 int dp=4;
 
-void cleardisplay(void){
-    digitalWrite(a, LOW);
-    digitalWrite(b, LOW);
-    digitalWrite(c, LOW);
-    digitalWrite(d, LOW);
-    digitalWrite(e, LOW);
-    digitalWrite(f, LOW);
-    digitalWrite(g, LOW);
-    digitalWrite(dp, LOW);
+void clearDisplay(void){
+    int sections[] = {a, b, c, d, e, f, g};
+
+    for (int section : sections) {
+        digitalWrite(section, LOW);
+    }
 }
 
 void display1(void){
-    digitalWrite(b, HIGH);
-    digitalWrite(c, HIGH);
+    int sections[] = {b, c};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display2(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(g, HIGH);
-    digitalWrite(e, HIGH);
-    digitalWrite(d, HIGH);
+    int sections[] = {a, b, d, e, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display3(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(g, HIGH);
-    digitalWrite(c, HIGH);
-    digitalWrite(d, HIGH);
+    int sections[] = {a, b, c, d, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display4(void){
-    digitalWrite(f, HIGH);
-    digitalWrite(g, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(c, HIGH);
+     int sections[] = {b, c, f, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display5(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(f, HIGH);
-    digitalWrite(g, HIGH);
-    digitalWrite(c, HIGH);
-    digitalWrite(d, HIGH);
+    int sections[] = {a, c, d, f, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display6(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(f, HIGH);
-    digitalWrite(g, HIGH);
-    digitalWrite(c, HIGH);
-    digitalWrite(d, HIGH);
-    digitalWrite(e, HIGH);
+    int sections[] = {a, c, d, e, f, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display7(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(c, HIGH);
+    int sections[] = {a, b, c};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 }
 
 void display8(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(c, HIGH);
-    digitalWrite(d, HIGH);
-    digitalWrite(e, HIGH);
-    digitalWrite(f, HIGH);
-    digitalWrite(g, HIGH);
+    int sections[] = {a, b, c, d, e, f, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 
 }
 
 void display9(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(c, HIGH);
-    digitalWrite(f, HIGH);
-    digitalWrite(g, HIGH);
+    int sections[] = {a, b, c, f, g};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
 
 }
 
 void display0(void){
-    digitalWrite(a, HIGH);
-    digitalWrite(b, HIGH);
-    digitalWrite(c, HIGH);
-    digitalWrite(d, HIGH);
-    digitalWrite(e, HIGH);
-    digitalWrite(f, HIGH);
+    int sections[] = {a, b, c, d, e, f};
+
+    for (int section : sections) {
+        digitalWrite(section, HIGH);
+    }
+}
+
+void dot(void){
+    digitalWrite(dp, HIGH);
 }
 
 void counterLoading(void){
-    display1();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
+    const int numFunctions = 10;
 
-    display2();
-    delay(500);
-    cleardisplay();    
-    loading();
-    cleardisplay();
+    void (*displayFunctions[numFunctions])() = {display1, display2, display3, display4, display5, display6, display7, display8, display9, display0};
 
-    display3();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display4();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display5();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display6();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display7();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display8();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display9();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
-
-    display0();
-    delay(500);
-    cleardisplay();
-    loading();
-    cleardisplay();
+    for (int i = 0; i< numFunctions; i++) {
+        displayFunctions[i]();
+        delay(500);
+        clearDisplay();
+        loading();
+        clearDisplay();
+    }
 }
 
-void counter(void){
-    display1();
-    delay(500);
-    cleardisplay();
+void counterAsc(void){
+    const int numFunctions = 10;
 
-    display2();
-    delay(500);
-    cleardisplay();
+    void (*displayFunctions[numFunctions])() = {display1, display2, display3, display4, display5, display6, display7, display8, display9, display0};
 
-    display3();
-    delay(500);
-    cleardisplay();
+    for (int i = 0; i < numFunctions; i++) {
+        displayFunctions[i]();
+        delay(500);
+        clearDisplay();
+    }
+}
 
-    display4();
-    delay(500);
-    cleardisplay();
+void counterDesc(void){
+    const int numFunctions = 10;
 
-    display5();
-    delay(500);
-    cleardisplay();
+    void (*displayFunctions[numFunctions])() = {display0, display1, display2, display3, display4, display5, display6, display7, display8, display9};
 
-    display6();
-    delay(500);
-    cleardisplay();
+    for (int i = numFunctions - 1; i >= 0; --i) {
+        displayFunctions[i]();
+        delay(500);
+        clearDisplay();
 
-    display7();
-    delay(500);
-    cleardisplay();
-
-    display8();
-    delay(500);
-    cleardisplay();
-
-    display9();
-    delay(500);
-    cleardisplay();
-
-    display0();
-    delay(500);
-    cleardisplay();
+    }
 }
 
 void loading(void){
@@ -233,4 +171,6 @@ void setup(){
 
 void loop(){
     counterLoading();
+    counterAsc();
+    counterDesc();
 }
